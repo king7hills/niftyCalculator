@@ -7,7 +7,7 @@ const multiply = document.querySelector('#multiplyButton');
 const seven = document.querySelector('#seven');
 const eight = document.querySelector('#eight');
 const nine = document.querySelector('#nine');
-const minus = document.querySelector('#minus');
+const minus = document.querySelector('#minusButton');
 
 const four = document.querySelector('#four');
 const five = document.querySelector('#five');
@@ -37,18 +37,6 @@ function timesNums (a, b) {
 
 function divNums (a, b) {
     return (a/b);
-};
-
-function operate (operator, a, b) {
-    if (operator == '+') {
-       return add(a, b);
-    } else if (operator == '-') {
-       return subtract(a,b);
-    } else if (operator == '*') {
-       return timesNums(a,b);
-    } else if (operator == '/') {
-       return divNums(a,b);
-    }
 };
 
 const numDisplay = document.querySelector('#digitWindow');
@@ -96,6 +84,7 @@ function clearDisp () {
 };
 
 const digitPanel = document.querySelector('#digits');
+
 function operatorPress (input) {
     storeDispValue();
     storeOperator(input);
@@ -103,9 +92,9 @@ function operatorPress (input) {
 }
 
 divide.addEventListener("click", () => operatorPress('/'));
-// multiply.addEventListener("click", () => operatorPress('*'));
-// plus.addEventListener("click", () => operatorPress('+'));
-// minus.addEventListener("click", () => operatorPress('-'));
+multiply.addEventListener("click", () => operatorPress('*'));
+plus.addEventListener("click", () => operatorPress('+'));
+minus.addEventListener("click", () => operatorPress('-'));
 
 function clearPress () {
     clearDisp();
@@ -114,3 +103,27 @@ function clearPress () {
 };
 
 clear.addEventListener("click", () => clearPress());
+
+let newDisp = '';
+function opUpdate () {
+    numDisplay.textContent = newDisp;
+    whichOp = '';
+};
+
+function operate (operator, a, b) {
+    if (operator == '+') {
+        newDisp = add(a, b);
+        opUpdate();
+    } else if (operator == '-') {
+        newDisp = subtract(a,b);
+        opUpdate();
+    } else if (operator == '*') {
+        newDisp = timesNums(a,b);
+        opUpdate();
+    } else if (operator == '/') {
+        newDisp = divNums(a,b);
+        opUpdate();
+    }
+};
+
+enter.addEventListener("click", () => operate(whichOp, dispValue, numDisplay.textContent));
