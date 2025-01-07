@@ -51,7 +51,7 @@ function operate (operator, a, b) {
     }
 };
 
-const numDisplay = document.querySelector('#digits');
+const numDisplay = document.querySelector('#digitWindow');
 
 function displayNum (num) {
     numDisplay.textContent += (`${num}`);
@@ -88,18 +88,24 @@ function storeDispValue () {
 }
 let whichOp = ''
 function storeOperator (Op) {
-    whichOp = `${Op}`
+    whichOp = Op;
 }
 
 function clearDisp () {
     numDisplay.textContent = '';
 };
 
-function operatorPress (Op) {
+const digitPanel = document.querySelector('#digits');
+function operatorPress (input) {
     storeDispValue();
-    storeOperator(Op);
-    
+    storeOperator(input);
+    digitPanel.addEventListener("click", () => clearDisp(), {once: true});
 }
+
+divide.addEventListener("click", () => operatorPress('/'));
+// multiply.addEventListener("click", () => operatorPress('*'));
+// plus.addEventListener("click", () => operatorPress('+'));
+// minus.addEventListener("click", () => operatorPress('-'));
 
 function clearPress () {
     clearDisp();
