@@ -81,25 +81,30 @@ function makeDispNegative () {
 
 plusminus.addEventListener("click", () => makeDispNegative());
 
-//clear functions
-function clearDisp () {
-    numDisplay.textContent = '';
-};
-
-function clearPress () {
-    clearDisp();
-};
-
-clear.addEventListener("click", () => clearPress());
-
-
-
 //operator button functions
 let dispValue = '';
 function storeDispValue () {
-    dispValue = Number.numDisplay.textContent;
+    dispValue = numDisplay.textContent;
 }
 let whichOp = ''
 function storeOperator (Op) {
     whichOp = `${Op}`
 }
+
+function clearDisp () {
+    numDisplay.textContent = '';
+};
+
+function operatorPress (Op) {
+    storeDispValue();
+    storeOperator(Op);
+    
+}
+
+function clearPress () {
+    clearDisp();
+    dispValue = '';
+    whichOp = '';
+};
+
+clear.addEventListener("click", () => clearPress());
