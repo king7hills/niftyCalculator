@@ -24,7 +24,7 @@ const decimal = document.querySelector('#decimal');
 
 //Basic calculation functions
 function add (a, b) {
-    return (a + b);
+    return (Number(a) + Number(b));
 };
 
 function subtract (a, b) {
@@ -39,6 +39,7 @@ function divNums (a, b) {
     return (a/b);
 };
 
+//Display initialization
 const numDisplay = document.querySelector('#digitWindow');
 
 function displayNum (num) {
@@ -61,6 +62,7 @@ zero.addEventListener("click", () => displayNum(0));
 
 decimal.addEventListener("click", () => displayNum('.'));
 
+//sign function and event listener
 function makeDispNegative () {
     if (numDisplay.textContent.includes('-')) {
         numDisplay.textContent = numDisplay.textContent.replace('-', '');
@@ -74,6 +76,7 @@ let dispValue = '';
 function storeDispValue () {
     dispValue = numDisplay.textContent;
 }
+
 let whichOp = ''
 function storeOperator (Op) {
     whichOp = Op;
@@ -85,6 +88,8 @@ function clearDisp () {
 
 const digitPanel = document.querySelector('#digits');
 
+//Function and listeners for operators.
+//Current challenge is clearing the display before typing the next number.
 function operatorPress (input) {
     storeDispValue();
     storeOperator(input);
@@ -96,6 +101,7 @@ multiply.addEventListener("click", () => operatorPress('*'));
 plus.addEventListener("click", () => operatorPress('+'));
 minus.addEventListener("click", () => operatorPress('-'));
 
+//clear function
 function clearPress () {
     clearDisp();
     dispValue = '';
@@ -103,6 +109,9 @@ function clearPress () {
 };
 
 clear.addEventListener("click", () => clearPress());
+
+//Operate function which performs the actual math based on the stored operator.
+//This function saves the result for further operation until cleared.
 
 let newDisp = '';
 function opUpdate () {
