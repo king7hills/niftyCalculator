@@ -33,9 +33,14 @@ body {
     border: 1px solid black;
     border-radius: 10px;
     font-family: "Jersey 15", serif;
-    font-weight: 400;
+    font-weight: 300;
     color: slategray;
-    font-size: 32px;
+    font-size: 84px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 4px;
+    padding-right: 10px;
 }
 
 #calcBod {
@@ -56,7 +61,7 @@ body {
     font-size: 32px;
 }
 
-#decimal {
+#decimalButton {
     grid-column: 3;
     grid-row: 5;
 }
