@@ -51,8 +51,11 @@ function digitEventLogic (digit) {
     if (displayCleared == false) {
         clearDisp();
         displayCleared = true;
-        displayNum(digit);
-    } else if (displayCleared == true) {displayNum(digit)
+        if (numDisplay.textContent.length == 13) {}
+        else {displayNum(digit)}
+    } else if (displayCleared == true) {
+        if (numDisplay.textContent.length == 13) {}
+        else {displayNum(digit)}
     };
 }
 //display event listeners (Number Buttons)
