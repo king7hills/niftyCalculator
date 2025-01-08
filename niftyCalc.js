@@ -91,9 +91,20 @@ const digitPanel = document.querySelector('#digits');
 //Function and listeners for operators.
 //Current challenge is clearing the display before typing the next number.
 function operatorPress (input) {
+    //condition for pressing multiple operators without pressing enter
+    if (whichOp != '') {
+        let newOp = whichOp
+        if (whichOp == newOp) {
+        } else {
+            operate(whichOp, dispValue, numDisplay.textContent);
+            operatorPress(input);
+        };
+    } else {
     storeDispValue();
     storeOperator(input);
+    
     digitPanel.addEventListener("click", () => clearDisp(), {once: true});
+    }
 }
 
 divide.addEventListener("click", () => operatorPress('/'));
@@ -136,3 +147,5 @@ function operate (operator, a, b) {
 };
 
 enter.addEventListener("click", () => operate(whichOp, dispValue, numDisplay.textContent));
+
+//Conditional calculator logic
