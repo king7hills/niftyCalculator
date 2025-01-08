@@ -51,10 +51,10 @@ function digitEventLogic (digit) {
     if (displayCleared == false) {
         clearDisp();
         displayCleared = true;
-        if (numDisplay.textContent.length == 13) {}
+        if (numDisplay.textContent.length == 12) {}
         else {displayNum(digit)}
     } else if (displayCleared == true) {
-        if (numDisplay.textContent.length == 13) {}
+        if (numDisplay.textContent.length == 12) {}
         else {displayNum(digit)}
     };
 }
@@ -142,19 +142,23 @@ function opUpdate () {
     dispValue = '';
     displayCleared = false;
 };
-
+function adjustLength (func) {
+    if (func.toString().length >= 12) {
+        newDisp = parseFloat(func.toPrecision(11));
+    } else {newDisp = func;}
+}
 function operate (operator, a, b) {
     if (operator == '+') {
-        newDisp = add(a, b);
+        adjustLength(add(a, b));
         opUpdate();
     } else if (operator == '-') {
-        newDisp = subtract(a,b);
+        adjustLength(subtract(a, b));
         opUpdate();
     } else if (operator == '*') {
-        newDisp = timesNums(a,b);
+        adjustLength(timesNums(a, b));
         opUpdate();
     } else if (operator == '/') {
-        newDisp = divNums(a,b);
+        adjustLength(divNums(a, b));
         opUpdate();
     }
 };
