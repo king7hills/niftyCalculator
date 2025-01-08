@@ -72,7 +72,16 @@ two.addEventListener("click", () => digitEventLogic(2));
 three.addEventListener("click", () => digitEventLogic(3));
 zero.addEventListener("click", () => digitEventLogic(0));
 
-decimal.addEventListener("click", () => digitEventLogic('.'));
+//custom logic for decimal button
+decimal.addEventListener("click", () => {
+    if (displayCleared == false) {
+        clearDisp();
+        displayCleared = true;
+        if (numDisplay.textContent.length == 12) {}
+        else {displayNum('.')}
+    } else if (displayCleared == true && numDisplay.textContent.includes('.'))
+    {} else {displayNum('.')}
+});
 
 //sign function and event listener
 function makeDispNegative () {
