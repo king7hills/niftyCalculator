@@ -173,3 +173,11 @@ function operate (operator, a, b) {
 };
 
 enter.addEventListener("click", () => operate(whichOp, dispValue, numDisplay.textContent));
+
+//Back button function
+function deleteLastDigit () {
+    numDisplay.textContent = numDisplay.textContent.slice(0, -1);
+}
+
+const back = document.querySelector('#backBut');
+back.addEventListener("click", () => deleteLastDigit());
