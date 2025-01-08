@@ -46,21 +46,28 @@ function displayNum (num) {
     numDisplay.textContent += (`${num}`);
 };
 
+function digitEventLogic (digit) {
+        if (whichOp != '' || newDisp != '') {
+            clearDisp();
+            displayNum(digit);
+        } else displayNum(digit);
+    };
+
 //display event listeners (Number Buttons)
-seven.addEventListener("click", () => displayNum(7));
-eight.addEventListener("click", () => displayNum(8));
-nine.addEventListener("click", () => displayNum(9));
+seven.addEventListener("click", () => digitEventLogic(7));
+eight.addEventListener("click", () => digitEventLogic(8));
+nine.addEventListener("click", () => digitEventLogic(9));
 
-four.addEventListener("click", () => displayNum(4));
-five.addEventListener("click", () => displayNum(5));
-six.addEventListener("click", () => displayNum(6));
+four.addEventListener("click", () => digitEventLogic(4));
+five.addEventListener("click", () => digitEventLogic(5));
+six.addEventListener("click", () => digitEventLogic(6));
 
-one.addEventListener("click", () => displayNum(1));
-two.addEventListener("click", () => displayNum(2));
-three.addEventListener("click", () => displayNum(3));
-zero.addEventListener("click", () => displayNum(0));
+one.addEventListener("click", () => digitEventLogic(1));
+two.addEventListener("click", () => digitEventLogic(2));
+three.addEventListener("click", () => digitEventLogic(3));
+zero.addEventListener("click", () => digitEventLogic(0));
 
-decimal.addEventListener("click", () => displayNum('.'));
+decimal.addEventListener("click", () => digitEventLogic('.'));
 
 //sign function and event listener
 function makeDispNegative () {
@@ -93,8 +100,7 @@ const digitPanel = document.querySelector('#digits');
 function operatorPress (input) {
     //condition for pressing multiple operators without pressing enter
     if (whichOp != '') {
-        let newOp = whichOp
-        if (whichOp == newOp) {
+        if (dispValue != '') {
         } else {
             operate(whichOp, dispValue, numDisplay.textContent);
             operatorPress(input);
@@ -102,8 +108,6 @@ function operatorPress (input) {
     } else {
     storeDispValue();
     storeOperator(input);
-    
-    digitPanel.addEventListener("click", () => clearDisp(), {once: true});
     }
 }
 
