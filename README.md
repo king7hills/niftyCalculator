@@ -10,3 +10,4 @@ There are bugs I'm working out including too many digits overflowing the display
 
 1.8.25
 Solved the digit clearing problem by implementing conditional logic on the digit event listeners.
+Finished the calculator. Decided not to add key bindings for sake of time.
