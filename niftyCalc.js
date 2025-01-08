@@ -103,8 +103,10 @@ function operatorPress (input) {
     else if (whichOp == input && dispValue != '' && displayCleared == true) {
         operate(whichOp, dispValue, numDisplay.textContent);
         operatorPress(input);
-    }
-    else {
+    } else if (whichOp != input && dispValue != '' && displayCleared == true) {
+        operate(whichOp, dispValue, numDisplay.textContent);
+        operatorPress(input);
+    } else {
     storeDispValue();
     storeOperator(input);
     displayCleared = false;
