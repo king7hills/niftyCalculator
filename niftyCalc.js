@@ -93,8 +93,6 @@ function clearDisp () {
     numDisplay.textContent = '';
 };
 
-const digitPanel = document.querySelector('#digits');
-
 //Function and listeners for operators.
 //Current challenge is clearing the display before typing the next number.
 function operatorPress (input) {

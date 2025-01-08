@@ -7,3 +7,6 @@ On 1.6.25, I finished up the CSS structure and began the scripting.
 Today, I finished all of the scripting.
 
 There are bugs I'm working out including too many digits overflowing the display, just realized my sum function concatenated my input strings, etc.
+
+1.8.25
+Solved the digit clearing problem by implementing conditional logic on the digit event listeners.
