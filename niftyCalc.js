@@ -45,17 +45,16 @@ const numDisplay = document.querySelector('#digitWindow');
 function displayNum (num) {
     numDisplay.textContent += (`${num}`);
 };
-let displayCleared = false;
+let displayCleared = true;
 
 function digitEventLogic (digit) {
-        if (whichOp != '' || newDisp != '') {
-            if (displayCleared = false) {
-            clearDisp();
-            displayCleared = true;};
-            displayNum(digit);
-        } else displayNum(digit);
+    if (displayCleared == false) {
+        clearDisp();
+        displayCleared = true;
+        displayNum(digit);
+    } else if (displayCleared == true) {displayNum(digit)
     };
-
+}
 //display event listeners (Number Buttons)
 seven.addEventListener("click", () => digitEventLogic(7));
 eight.addEventListener("click", () => digitEventLogic(8));
@@ -99,15 +98,16 @@ function clearDisp () {
 //Function and listeners for operators.
 //Current challenge is clearing the display before typing the next number.
 function operatorPress (input) {
-    if (whichOp == input && dispValue != '') {
+    if (whichOp == input && dispValue != '' && displayCleared == false) {
         {}} 
-    else if (whichOp != input && dispValue != '') {
+    else if (whichOp == input && dispValue != '' && displayCleared == true) {
         operate(whichOp, dispValue, numDisplay.textContent);
         operatorPress(input);
     }
     else {
     storeDispValue();
     storeOperator(input);
+    displayCleared = false;
     }
 }
 
@@ -122,6 +122,7 @@ function clearPress () {
     dispValue = '';
     whichOp = '';
     newDisp = '';
+    displayCleared = true;
 };
 
 clear.addEventListener("click", () => clearPress());
@@ -134,6 +135,7 @@ function opUpdate () {
     numDisplay.textContent = newDisp;
     whichOp = '';
     dispValue = '';
+    displayCleared = false;
 };
 
 function operate (operator, a, b) {
@@ -153,5 +155,3 @@ function operate (operator, a, b) {
 };
 
 enter.addEventListener("click", () => operate(whichOp, dispValue, numDisplay.textContent));
-
-//Conditional calculator logic
