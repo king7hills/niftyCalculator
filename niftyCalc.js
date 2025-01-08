@@ -45,10 +45,13 @@ const numDisplay = document.querySelector('#digitWindow');
 function displayNum (num) {
     numDisplay.textContent += (`${num}`);
 };
+let displayCleared = false;
 
 function digitEventLogic (digit) {
         if (whichOp != '' || newDisp != '') {
+            if (displayCleared = false) {
             clearDisp();
+            displayCleared = true;};
             displayNum(digit);
         } else displayNum(digit);
     };
@@ -96,14 +99,13 @@ function clearDisp () {
 //Function and listeners for operators.
 //Current challenge is clearing the display before typing the next number.
 function operatorPress (input) {
-    //condition for pressing multiple operators without pressing enter
-    if (whichOp != '') {
-        if (dispValue != '') {
-        } else {
-            operate(whichOp, dispValue, numDisplay.textContent);
-            operatorPress(input);
-        };
-    } else {
+    if (whichOp == input && dispValue != '') {
+        {}} 
+    else if (whichOp != input && dispValue != '') {
+        operate(whichOp, dispValue, numDisplay.textContent);
+        operatorPress(input);
+    }
+    else {
     storeDispValue();
     storeOperator(input);
     }
@@ -119,6 +121,7 @@ function clearPress () {
     clearDisp();
     dispValue = '';
     whichOp = '';
+    newDisp = '';
 };
 
 clear.addEventListener("click", () => clearPress());
@@ -130,6 +133,7 @@ let newDisp = '';
 function opUpdate () {
     numDisplay.textContent = newDisp;
     whichOp = '';
+    dispValue = '';
 };
 
 function operate (operator, a, b) {
